@@ -19,12 +19,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var targetLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var roundLabel: UILabel!
-    
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        startNewRound()
+        startNewGame()
         updateLabels()
         
     }
@@ -84,7 +84,7 @@ class ViewController: UIViewController {
         
     }
     
-    @IBAction func sliderMoved(_ slider: UISlider){
+    @IBAction func sliderMoved(_ slider: UISlider) {
         curentValue = lroundf(slider.value)
         print("The value of the slider is now: \(slider.value)")
     }
@@ -96,11 +96,22 @@ class ViewController: UIViewController {
         round += 1
     }
     
-    func updateLabels(){
+    func updateLabels() {
         targetLabel.text = String(targetValue)
         scoreLabel.text = String(score)
         roundLabel.text = String(round)
+    }
+    
+    @IBAction func startOver() {
+        startNewGame()
+        updateLabels()
+    }
+    
+    func startNewGame() {
+        score = 0
+        round = 0
         
+        startNewRound()
     }
     
     
