@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 class ViewController: UIViewController {
     
@@ -111,7 +112,7 @@ class ViewController: UIViewController {
     }
     
     func startNewRound() {
-        targetValue = 1 + Int(arc4random_uniform(100))
+        newTargetValue()
         curentValue = 50
         slider.value = Float(curentValue)
         round += 1
@@ -126,6 +127,7 @@ class ViewController: UIViewController {
     @IBAction func startOver() {
         startNewGame()
         updateLabels()
+        
     }
     
     func startNewGame() {
@@ -135,6 +137,15 @@ class ViewController: UIViewController {
         startNewRound()
     }
     
+    func newTargetValue() {
+        targetValue = 1 + Int(arc4random_uniform(100))
+        
+        let transition = CATransition()
+        transition.type = kCATransitionFade
+        transition.duration = 1.5
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        view.layer.add(transition, forKey: nil)
+    }
     
 
 }
